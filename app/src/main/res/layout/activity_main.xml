@@ -7,16 +7,18 @@
     tools:context=".MainActivity">
 
 
+    <!--Encryption-->
+
     <TextView
         android:id="@+id/textView"
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
 
 
-        android:layout_marginStart="82dp"
-        android:layout_marginTop="60dp"
+        android:layout_marginStart="86dp"
+        android:layout_marginTop="8dp"
         android:text="Algorithm "
-        android:textSize="24sp"
+        android:textSize="12sp"
         app:layout_constraintStart_toStartOf="parent"
         app:layout_constraintTop_toTopOf="parent" />
 
@@ -24,19 +26,21 @@
         android:id="@+id/algorithms"
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
-        android:layout_marginStart="23dp"
+        android:layout_marginStart="13dp"
+        android:layout_marginTop="8dp"
         android:dropDownWidth="wrap_content"
-        app:layout_constraintStart_toEndOf="@+id/textView"
-        app:layout_constraintTop_toTopOf="@+id/textView" />
+        app:layout_constraintStart_toEndOf="@+id/textView3"
+        app:layout_constraintTop_toTopOf="parent" />
 
     <TextView
         android:id="@+id/textView3"
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
-        android:layout_marginTop="13dp"
+        android:layout_marginStart="4dp"
+        android:layout_marginTop="8dp"
         android:text="Operation"
-        android:textSize="24sp"
-        app:layout_constraintEnd_toEndOf="@+id/textView"
+        android:textSize="12sp"
+        app:layout_constraintStart_toStartOf="@+id/textView"
         app:layout_constraintTop_toBottomOf="@+id/textView" />
 
     <Spinner
@@ -44,171 +48,167 @@
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
         app:layout_constraintStart_toStartOf="@+id/algorithms"
-        app:layout_constraintTop_toTopOf="@+id/textView3" />
+        app:layout_constraintTop_toBottomOf="@+id/algorithms" />
 
-    <View
-        android:id="@+id/view"
-        android:layout_width="0dp"
-        android:layout_height="1dp"
-        android:layout_marginStart="26dp"
-        android:layout_marginTop="74dp"
-        android:layout_marginEnd="16dp"
-        android:layout_marginBottom="63dp"
-        android:background="#E91E63"
-        app:layout_constraintBottom_toBottomOf="@+id/dec_et_k"
-        app:layout_constraintEnd_toEndOf="@+id/dec_et_k"
-        app:layout_constraintStart_toStartOf="parent"
-        app:layout_constraintTop_toTopOf="@+id/textView3" />
-<!--Encryption-->
+
+
     <TextView
-        android:id="@+id/dec_tv_k"
+        android:id="@+id/enc_tv_k"
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
 
-        android:layout_marginEnd="20dp"
+        android:layout_marginStart="16dp"
+        android:layout_marginTop="11dp"
         android:text="K  : "
-        android:textSize="24sp"
-        app:layout_constraintBottom_toBottomOf="@+id/dec_et_k"
-        app:layout_constraintEnd_toStartOf="@+id/dec_et_k" />
+        android:textSize="12sp"
+        app:layout_constraintStart_toStartOf="parent"
+        app:layout_constraintTop_toTopOf="@+id/enc_et_k" />
 
     <EditText
-        android:id="@+id/dec_et_k"
+        android:id="@+id/enc_et_k"
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
-        android:layout_marginTop="61dp"
+        android:layout_marginTop="21dp"
         android:ems="10"
         android:inputType="textPersonName"
         android:text=""
-        app:layout_constraintEnd_toEndOf="@+id/dec_et_chipher"
-        app:layout_constraintStart_toStartOf="@+id/dec_et_chipher"
-        app:layout_constraintTop_toBottomOf="@+id/textView3" />
+        app:layout_constraintEnd_toStartOf="@+id/operations"
+        app:layout_constraintStart_toStartOf="@+id/operations"
+        app:layout_constraintTop_toBottomOf="@+id/operations" />
 
     <TextView
-        android:id="@+id/dec_tv_n"
+        android:id="@+id/enc_tv_n"
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
 
+        android:layout_marginStart="16dp"
         android:text="N : "
-        android:textSize="24sp"
-        app:layout_constraintBaseline_toBaselineOf="@+id/dec_et_n"
-        app:layout_constraintEnd_toEndOf="@+id/dec_tv_k" />
+        android:textSize="12sp"
+        app:layout_constraintStart_toStartOf="parent"
+        app:layout_constraintTop_toTopOf="@+id/enc_et_n" />
 
     <EditText
-        android:id="@+id/dec_et_n"
+        android:id="@+id/enc_et_n"
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
-        android:layout_marginTop="19dp"
+        android:layout_marginTop="15dp"
         android:ems="10"
         android:inputType="textPersonName"
         android:text=""
-        app:layout_constraintStart_toStartOf="@+id/dec_et_k"
-        app:layout_constraintTop_toBottomOf="@+id/dec_et_k" />
+        app:layout_constraintStart_toStartOf="@+id/enc_et_k"
+        app:layout_constraintTop_toBottomOf="@+id/enc_et_k" />
 
     <TextView
-        android:id="@+id/dec_tv_a"
+        android:id="@+id/enc_tv_a"
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
 
-        android:layout_marginEnd="20dp"
+        android:layout_marginStart="19dp"
         android:text="A : "
-        android:textSize="24sp"
-        app:layout_constraintBaseline_toBaselineOf="@+id/dec_et_a"
-        app:layout_constraintEnd_toStartOf="@+id/dec_et_a" />
+        android:textSize="12sp"
+        app:layout_constraintBaseline_toBaselineOf="@+id/enc_et_a"
+        app:layout_constraintStart_toStartOf="parent" />
 
     <EditText
-        android:id="@+id/dec_et_a"
-        android:layout_width="wrap_content"
-        android:layout_height="wrap_content"
-        android:layout_marginTop="14dp"
-        android:ems="10"
-        android:inputType="textPersonName"
-        android:text=""
-        app:layout_constraintStart_toStartOf="@+id/dec_et_n"
-        app:layout_constraintTop_toBottomOf="@+id/dec_et_n" />
-
-    <TextView
-        android:id="@+id/dec_tv_m"
-        android:layout_width="wrap_content"
-        android:layout_height="wrap_content"
-
-        android:layout_marginEnd="20dp"
-        android:text="M : "
-        android:textSize="24sp"
-        app:layout_constraintBaseline_toBaselineOf="@+id/dec_et_m"
-        app:layout_constraintEnd_toStartOf="@+id/dec_et_m" />
-
-    <EditText
-        android:id="@+id/dec_et_m"
-        android:layout_width="wrap_content"
-        android:layout_height="wrap_content"
-        android:layout_marginTop="19dp"
-        android:ems="10"
-        android:inputType="textPersonName"
-        android:text=""
-        app:layout_constraintStart_toStartOf="@+id/dec_et_a"
-        app:layout_constraintTop_toBottomOf="@+id/dec_et_a" />
-
-    <Button
-        android:id="@+id/dec_btn_encpt"
-        android:layout_width="wrap_content"
-        android:layout_height="wrap_content"
-        android:layout_marginBottom="33dp"
-        android:text="Encrypt"
-        app:layout_constraintBottom_toTopOf="@+id/dec_et_chipher"
-        app:layout_constraintStart_toEndOf="@+id/dec_tv_chipher" />
-
-    <TextView
-        android:id="@+id/dec_tv_chipher"
-        android:layout_width="wrap_content"
-        android:layout_height="wrap_content"
-        android:layout_marginEnd="20dp"
-
-        android:text="C : "
-        android:textSize="24sp"
-        app:layout_constraintBaseline_toBaselineOf="@+id/dec_et_chipher"
-        app:layout_constraintEnd_toStartOf="@+id/dec_et_chipher" />
-
-    <EditText
-        android:id="@+id/dec_et_chipher"
-        android:layout_width="wrap_content"
-        android:layout_height="wrap_content"
-        android:layout_marginEnd="49dp"
-        android:layout_marginBottom="141dp"
-        android:ems="10"
-        android:inputType="textPersonName"
-        android:text=""
-        app:layout_constraintBottom_toBottomOf="parent"
-        app:layout_constraintEnd_toEndOf="parent" />
-
-    <TextView
-        android:id="@+id/dec_tv_tag"
-        android:layout_width="wrap_content"
-        android:layout_height="wrap_content"
-        android:layout_marginEnd="20dp"
-
-        android:text="T : "
-        android:textSize="24sp"
-        app:layout_constraintBaseline_toBaselineOf="@+id/dec_et_tag"
-        app:layout_constraintEnd_toStartOf="@+id/dec_et_tag" />
-
-    <EditText
-        android:id="@+id/dec_et_tag"
+        android:id="@+id/enc_et_a"
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
         android:layout_marginTop="11dp"
         android:ems="10"
         android:inputType="textPersonName"
         android:text=""
-        app:layout_constraintStart_toStartOf="@+id/dec_et_chipher"
-        app:layout_constraintTop_toBottomOf="@+id/dec_et_chipher" />
+        app:layout_constraintStart_toStartOf="@+id/enc_et_n"
+        app:layout_constraintTop_toBottomOf="@+id/enc_et_n" />
 
-    <androidx.constraintlayout.widget.Group
+    <TextView
+        android:id="@+id/enc_tv_m"
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
-        tools:layout_editor_absoluteX="45dp"
-        tools:layout_editor_absoluteY="680dp"
+
+        android:layout_marginStart="14dp"
+        android:text="M : "
+        android:textSize="12sp"
+        app:layout_constraintBaseline_toBaselineOf="@+id/enc_et_m"
+        app:layout_constraintStart_toStartOf="parent" />
+
+    <EditText
+        android:id="@+id/enc_et_m"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:layout_marginTop="14dp"
+        android:ems="10"
+        android:inputType="textPersonName"
+        android:text=""
+        app:layout_constraintStart_toStartOf="@+id/enc_et_a"
+        app:layout_constraintTop_toBottomOf="@+id/enc_et_a" />
+
+    <Button
+        android:id="@+id/enc_btn_encpt"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:layout_marginStart="39dp"
+        android:layout_marginTop="13dp"
+        android:text="Encrypt"
+        app:layout_constraintStart_toStartOf="@+id/enc_et_m"
+        app:layout_constraintTop_toBottomOf="@+id/enc_et_m" />
+
+    <TextView
+        android:id="@+id/enc_tv_chipher"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+
+        android:layout_marginStart="19dp"
+        android:layout_marginTop="19dp"
+        android:text="C : "
+        android:textSize="12sp"
+        app:layout_constraintStart_toStartOf="parent"
+        app:layout_constraintTop_toBottomOf="@+id/enc_btn_encpt" />
+
+    <EditText
+        android:id="@+id/enc_et_chipher"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:layout_marginStart="15dp"
+        android:ems="10"
+        android:inputType="textPersonName"
+        android:text=""
+        app:layout_constraintStart_toEndOf="@+id/enc_tv_chipher"
+        app:layout_constraintTop_toTopOf="@+id/enc_tv_chipher" />
+
+    <TextView
+        android:id="@+id/enc_tv_tag"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+
+        android:layout_marginStart="20dp"
+        android:layout_marginTop="17dp"
+        android:text="T : "
+        android:textSize="12sp"
+        app:layout_constraintStart_toStartOf="parent"
+        app:layout_constraintTop_toBottomOf="@+id/enc_et_chipher" />
+
+    <EditText
+        android:id="@+id/enc_et_tag"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:layout_marginStart="15dp"
+        android:ems="10"
+        android:inputType="textPersonName"
+        android:text=""
+        app:layout_constraintStart_toEndOf="@+id/enc_tv_tag"
+        app:layout_constraintTop_toTopOf="@+id/enc_tv_tag" />
+
+    <androidx.constraintlayout.widget.Group
         android:id="@+id/group_enc"
-    app:constraint_referenced_ids="dec_btn_encpt,dec_et_a,dec_et_chipher,dec_et_k,dec_et_m,dec_et_n,dec_et_tag,dec_tv_a,dec_tv_chipher,dec_tv_k,dec_tv_m,dec_tv_n,dec_tv_tag"/>
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:layout_marginStart="84dp"
+        android:layout_marginEnd="84dp"
+        android:layout_marginBottom="51dp"
+        app:constraint_referenced_ids="enc_btn_encpt,enc_et_a,enc_et_chipher,enc_et_k,enc_et_m,enc_et_n,enc_et_tag,enc_tv_a,enc_tv_chipher,enc_tv_k,enc_tv_m,enc_tv_n,enc_tv_tag"
+        app:layout_constraintBottom_toBottomOf="parent"
+        app:layout_constraintEnd_toEndOf="@+id/operations"
+        app:layout_constraintStart_toEndOf="@+id/enc_tv_tag" />
 
     <!--Decryption-->
 
