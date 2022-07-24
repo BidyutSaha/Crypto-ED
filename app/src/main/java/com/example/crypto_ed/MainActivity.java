@@ -23,6 +23,14 @@ public class MainActivity extends AppCompatActivity {
     String[] operations = {"Encryption", "Decryption"};
     int algorithm_index = 0;
     int operation_index = 0;
+    EditText enc_et_k;
+    EditText enc_et_n;
+    EditText enc_et_a;
+    EditText enc_et_m;
+    EditText enc_et_chipher;
+    EditText enc_et_tag;
+    Button encrypt_btn;
+
 
 
     public void visGroup(int id, int val) {
@@ -74,21 +82,18 @@ public class MainActivity extends AppCompatActivity {
                 String msg = algorithms[algorithm_index] + " : " + operations[operation_index];
                 int id, val;
 
-                if (i == 0) {
-                    Group group = (Group) findViewById(R.id.group_enc);
-                    group.setVisibility(View.VISIBLE);
-
+                if (i == 0) { // encryption
+                    enc_et_chipher.setEnabled(false);
+                    enc_et_tag.setEnabled(false);
+                    enc_et_m.setEnabled(true);
+                    encrypt_btn.setText("Encryption");
 
                 } else {
-                    Group group = (Group) findViewById(R.id.group_enc);
-                    group.setVisibility(View.INVISIBLE);
+                    enc_et_chipher.setEnabled(true);
+                    enc_et_tag.setEnabled(true);
+                    enc_et_m.setEnabled(false);
+                    encrypt_btn.setText("Decryption");
                 }
-
-
-                Toast.makeText(getApplicationContext(),
-                                msg,
-                                Toast.LENGTH_LONG)
-                        .show();
 
             }
 
@@ -121,54 +126,39 @@ public class MainActivity extends AppCompatActivity {
                         .simple_spinner_dropdown_item);
         operations_spinner.setAdapter(adapter_operations);
 
+        enc_et_k = (EditText) findViewById(R.id.enc_et_k);
+        enc_et_n = (EditText) findViewById(R.id.enc_et_n);
+        enc_et_a = (EditText) findViewById(R.id.enc_et_a);
+        enc_et_m = (EditText) findViewById(R.id.enc_et_m);
+        enc_et_chipher = (EditText) findViewById(R.id.enc_et_chipher);
+        enc_et_tag = (EditText) findViewById(R.id.enc_et_tag);
+        encrypt_btn = (Button) findViewById(R.id.enc_btn_encpt);
 
-        Button encrypt_btn = (Button) findViewById(R.id.enc_btn_encpt);
+
+
         encrypt_btn.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View view) {
-                EditText enc_et_k = (EditText) findViewById(R.id.enc_et_k);
+
                 String K = enc_et_k.getText().toString();
-
-                EditText enc_et_n = (EditText) findViewById(R.id.enc_et_n);
                 String N = enc_et_n.getText().toString();
-
-                EditText enc_et_a = (EditText) findViewById(R.id.enc_et_a);
                 String A = enc_et_a.getText().toString();
-
-                EditText enc_et_m = (EditText) findViewById(R.id.enc_et_m);
                 String M = enc_et_m.getText().toString();
-
                 String C, T;
                 List<String> rsp;
-
                 if (algorithm_index == 0) {
                     // beetle
                     Bettle_256_Enc enc = new Bettle_256_Enc();
                     rsp = enc.Encription(K, N, A, M);
-
                 } else {
                     // locus
                     Bettle_256_Enc enc1 = new Bettle_256_Enc();
                     rsp = enc1.Encription(K, N, A, M);
-
-
                 }
                 C = rsp.get(0);
                 T = rsp.get(1);
-
-
-//                String msg = K + " : " + N + " : " + A + " : " + M + " : " + algorithms[algorithm_index];
-//                Toast.makeText(getApplicationContext(),
-//                                msg,
-//                                Toast.LENGTH_LONG)
-//                        .show();
-
-                EditText enc_et_chipher = (EditText) findViewById(R.id.enc_et_chipher);
                 enc_et_chipher.setText(C);
-                EditText enc_et_tag = (EditText) findViewById(R.id.enc_et_tag);
                 enc_et_tag.setText(T);
-
-
             }
         });
 
