@@ -32,7 +32,6 @@ public class MainActivity extends AppCompatActivity {
     Button encrypt_btn;
 
 
-
     public void visGroup(int id, int val) {
         // id == 0 : encryption
         // id == 1 :  decryption
@@ -63,10 +62,7 @@ public class MainActivity extends AppCompatActivity {
             public void onItemSelected(AdapterView<?> adapterView, View view, int i, long l) {
                 algorithm_index = i;
                 String msg = algorithms[algorithm_index] + " : " + operations[operation_index];
-                Toast.makeText(getApplicationContext(),
-                                msg,
-                                Toast.LENGTH_LONG)
-                        .show();
+
             }
 
             @Override
@@ -83,15 +79,11 @@ public class MainActivity extends AppCompatActivity {
                 int id, val;
 
                 if (i == 0) { // encryption
-                    enc_et_chipher.setEnabled(false);
-                    enc_et_tag.setEnabled(false);
-                    enc_et_m.setEnabled(true);
+
                     encrypt_btn.setText("Encryption");
 
                 } else {
-                    enc_et_chipher.setEnabled(true);
-                    enc_et_tag.setEnabled(true);
-                    enc_et_m.setEnabled(false);
+
                     encrypt_btn.setText("Decryption");
                 }
 
@@ -135,7 +127,6 @@ public class MainActivity extends AppCompatActivity {
         encrypt_btn = (Button) findViewById(R.id.enc_btn_encpt);
 
 
-
         encrypt_btn.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View view) {
@@ -144,21 +135,33 @@ public class MainActivity extends AppCompatActivity {
                 String N = enc_et_n.getText().toString();
                 String A = enc_et_a.getText().toString();
                 String M = enc_et_m.getText().toString();
-                String C, T;
+                String C = enc_et_chipher.getText().toString();
+                String T = enc_et_tag.getText().toString();
+
                 List<String> rsp;
                 if (algorithm_index == 0) {
                     // beetle
-                    Bettle_256_Enc enc = new Bettle_256_Enc();
-                    rsp = enc.Encription(K, N, A, M);
+
+                    if (operation_index == 0) { // encryption
+                        Bettle_256_Enc enc = new Bettle_256_Enc();
+                        rsp = enc.Encription(K, N, A, M);
+                        C = rsp.get(0);
+                        T = rsp.get(1);
+                        enc_et_chipher.setText(C);
+                        enc_et_tag.setText(T);
+
+                    } else {  // decryption
+                        Bettle_256_Dec dec = new Bettle_256_Dec();
+                        rsp = dec.Decription(K, N, A, C,T);
+                        M = rsp.get(0);
+                        enc_et_m.setText(M);
+                    }
+
                 } else {
                     // locus
-                    Bettle_256_Enc enc1 = new Bettle_256_Enc();
-                    rsp = enc1.Encription(K, N, A, M);
+
                 }
-                C = rsp.get(0);
-                T = rsp.get(1);
-                enc_et_chipher.setText(C);
-                enc_et_tag.setText(T);
+
             }
         });
 
