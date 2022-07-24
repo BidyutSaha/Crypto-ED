@@ -13,29 +13,28 @@ import android.widget.EditText;
 import android.widget.Spinner;
 import android.widget.Toast;
 
+import java.util.List;
 
 
 public class MainActivity extends AppCompatActivity {
 
 
-    String[] algorithms = { "Beetle", "Locus"};
-    String[] operations = { "Encryption", "Decryption" };
+    String[] algorithms = {"Beetle", "Locus"};
+    String[] operations = {"Encryption", "Decryption"};
     int algorithm_index = 0;
     int operation_index = 0;
 
 
-
-
-    public void visGroup(int id, int val){
+    public void visGroup(int id, int val) {
         // id == 0 : encryption
         // id == 1 :  decryption
-        if (id == 0){
-            Group group=(Group)findViewById(R.id.group_enc);
+        if (id == 0) {
+            Group group = (Group) findViewById(R.id.group_enc);
             group.setVisibility(View.VISIBLE);
-            if (val == 1){
+            if (val == 1) {
                 group.setVisibility(View.VISIBLE);
 
-            }else{
+            } else {
                 group.setVisibility(View.INVISIBLE);
 
             }
@@ -51,7 +50,6 @@ public class MainActivity extends AppCompatActivity {
         Spinner operations_spinner = findViewById(R.id.operations);
 
 
-
         algorithms_spinner.setOnItemSelectedListener(new AdapterView.OnItemSelectedListener() {
             @Override
             public void onItemSelected(AdapterView<?> adapterView, View view, int i, long l) {
@@ -62,13 +60,11 @@ public class MainActivity extends AppCompatActivity {
                                 Toast.LENGTH_LONG)
                         .show();
             }
+
             @Override
             public void onNothingSelected(AdapterView<?> adapterView) {
             }
         });
-
-
-
 
 
         operations_spinner.setOnItemSelectedListener(new AdapterView.OnItemSelectedListener() {
@@ -76,20 +72,17 @@ public class MainActivity extends AppCompatActivity {
             public void onItemSelected(AdapterView<?> adapterView, View view, int i, long l) {
                 operation_index = i;
                 String msg = algorithms[algorithm_index] + " : " + operations[operation_index];
-                int id,val;
+                int id, val;
 
-                if(i==0){
-                    Group group=(Group)findViewById(R.id.group_enc);
+                if (i == 0) {
+                    Group group = (Group) findViewById(R.id.group_enc);
                     group.setVisibility(View.VISIBLE);
 
 
-                }else{
-                    Group group=(Group)findViewById(R.id.group_enc);
+                } else {
+                    Group group = (Group) findViewById(R.id.group_enc);
                     group.setVisibility(View.INVISIBLE);
                 }
-
-
-
 
 
                 Toast.makeText(getApplicationContext(),
@@ -120,6 +113,8 @@ public class MainActivity extends AppCompatActivity {
                 = new ArrayAdapter(
                 this,
                 android.R.layout.simple_spinner_item,
+
+
                 operations);
         adapter_operations.setDropDownViewResource(
                 android.R.layout
@@ -136,27 +131,46 @@ public class MainActivity extends AppCompatActivity {
 
                 EditText enc_et_n = (EditText) findViewById(R.id.enc_et_n);
                 String N = enc_et_n.getText().toString();
-k
+
                 EditText enc_et_a = (EditText) findViewById(R.id.enc_et_a);
                 String A = enc_et_a.getText().toString();
 
                 EditText enc_et_m = (EditText) findViewById(R.id.enc_et_m);
                 String M = enc_et_m.getText().toString();
 
-                String MM = K + " : " + N + " : " + A + " : " + M + " : " + algorithms[algorithm_index] ;
-                Toast.makeText(getApplicationContext(),
-                                MM,
-                                Toast.LENGTH_LONG)
-                        .show();
+                String C, T;
+                List<String> rsp;
+
+                if (algorithm_index == 0) {
+                    // beetle
+                    Bettle_256_Enc enc = new Bettle_256_Enc();
+                    rsp = enc.Encription(K, N, A, M);
+
+                } else {
+                    // locus
+                    Bettle_256_Enc enc1 = new Bettle_256_Enc();
+                    rsp = enc1.Encription(K, N, A, M);
+
+
+                }
+                C = rsp.get(0);
+                T = rsp.get(1);
+
+
+//                String msg = K + " : " + N + " : " + A + " : " + M + " : " + algorithms[algorithm_index];
+//                Toast.makeText(getApplicationContext(),
+//                                msg,
+//                                Toast.LENGTH_LONG)
+//                        .show();
+
+                EditText enc_et_chipher = (EditText) findViewById(R.id.enc_et_chipher);
+                enc_et_chipher.setText(C);
+                EditText enc_et_tag = (EditText) findViewById(R.id.enc_et_tag);
+                enc_et_tag.setText(T);
 
 
             }
         });
-
-
-
-
-
 
 
     }
