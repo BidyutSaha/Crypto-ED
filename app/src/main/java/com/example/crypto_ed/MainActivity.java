@@ -144,21 +144,34 @@ public class MainActivity extends AppCompatActivity {
                 String N = enc_et_n.getText().toString();
                 String A = enc_et_a.getText().toString();
                 String M = enc_et_m.getText().toString();
-                String C, T;
+                String C = enc_et_chipher.getText().toString();
+                String T = enc_et_tag.getText().toString();
                 List<String> rsp;
                 if (algorithm_index == 0) {
                     // beetle
-                    Bettle_256_Enc enc = new Bettle_256_Enc();
-                    rsp = enc.Encription(K, N, A, M);
+
+                    if (operation_index == 0) { // encryption
+                        Bettle_256_Enc enc = new Bettle_256_Enc();
+                        rsp = enc.Encription(K, N, A, M);
+                        C = rsp.get(0);
+                        T = rsp.get(1);
+                        enc_et_chipher.setText(C);
+                        enc_et_tag.setText(T);
+
+                    } else {  // decryption
+                        Bettle_256_Dec dec = new Bettle_256_Dec();
+                        rsp = dec.Decription(K, N, A, C,T);
+                        M = rsp.get(0);
+                        enc_et_m.setText(M);
+                    }
+
                 } else {
                     // locus
-                    Bettle_256_Enc enc1 = new Bettle_256_Enc();
-                    rsp = enc1.Encription(K, N, A, M);
+                    MyAsyncTasks myAsyncTasks = new MyAsyncTasks();
+                    myAsyncTasks.execute();
+
                 }
-                C = rsp.get(0);
-                T = rsp.get(1);
-                enc_et_chipher.setText(C);
-                enc_et_tag.setText(T);
+
             }
         });
 
