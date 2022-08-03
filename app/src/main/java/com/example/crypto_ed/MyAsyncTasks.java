@@ -1,8 +1,10 @@
 package com.example.crypto_ed;
 
+import android.app.Activity;
 import android.app.ProgressDialog;
 import android.os.AsyncTask;
 import android.util.Log;
+import android.widget.EditText;
 
 import org.json.JSONArray;
 import org.json.JSONException;
@@ -19,6 +21,16 @@ import javax.net.ssl.HttpsURLConnection;
 
 public class MyAsyncTasks extends AsyncTask<String, String, String> {
     String TAG = "###";
+    ProgressDialog progressDialog;
+    EditText et;
+
+    public MyAsyncTasks(Activity activity, EditText et){
+        System.out.println(et);
+        System.out.println("#############################  in task activity");
+        progressDialog = new ProgressDialog(activity);
+        this.et = et ;
+    }
+
     @Override
     protected String doInBackground(String... strings) {
         String response = "";
@@ -84,10 +96,9 @@ public class MyAsyncTasks extends AsyncTask<String, String, String> {
     protected void onPreExecute() {
         super.onPreExecute();
         // display a progress dialog to show the user what is happening
-//        ProgressDialog progressDialog = new ProgressDialog(MainActivity.this);
-//        progressDialog.setMessage("processing results");
-//        progressDialog.setCancelable(false);
-//        progressDialog.show();
+        progressDialog.setMessage("processing results");
+        progressDialog.setCancelable(false);
+        progressDialog.show();
         System.out.println("#################### progressbar is started");
 
     }
@@ -97,7 +108,12 @@ public class MyAsyncTasks extends AsyncTask<String, String, String> {
     protected void onPostExecute(String s) {
         // show results
         // dismiss the progress dialog after receiving data from API
-        //progressDialog.dismiss();
+        progressDialog.dismiss();
+
+        System.out.println(et);
+
+        et.setText("cdxcvdgv");
+
         try {
             JSONObject jsonObject = new JSONObject(s);
             System.out.println(jsonObject);

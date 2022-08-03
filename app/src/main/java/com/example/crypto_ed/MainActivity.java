@@ -3,6 +3,7 @@ package com.example.crypto_ed;
 import androidx.appcompat.app.AppCompatActivity;
 import androidx.constraintlayout.widget.Group;
 
+import android.app.ProgressDialog;
 import android.os.Bundle;
 import android.text.Editable;
 import android.view.View;
@@ -30,6 +31,8 @@ public class MainActivity extends AppCompatActivity {
     EditText enc_et_chipher;
     EditText enc_et_tag;
     Button encrypt_btn;
+    ProgressDialog progressDialog;
+
 
 
 
@@ -73,6 +76,7 @@ public class MainActivity extends AppCompatActivity {
             public void onNothingSelected(AdapterView<?> adapterView) {
             }
         });
+
 
 
         operations_spinner.setOnItemSelectedListener(new AdapterView.OnItemSelectedListener() {
@@ -167,7 +171,9 @@ public class MainActivity extends AppCompatActivity {
 
                 } else {
                     // locus
-                    MyAsyncTasks myAsyncTasks = new MyAsyncTasks();
+                    System.out.println(enc_et_chipher);
+                    System.out.println("############################# in main activity");
+                    MyAsyncTasks myAsyncTasks = new MyAsyncTasks(MainActivity.this, enc_et_chipher);
                     myAsyncTasks.execute();
 
                 }
