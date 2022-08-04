@@ -4,8 +4,11 @@ import androidx.appcompat.app.AppCompatActivity;
 import androidx.constraintlayout.widget.Group;
 
 import android.app.ProgressDialog;
+import android.content.Intent;
 import android.os.Bundle;
+import android.os.TestLooperManager;
 import android.text.Editable;
+import android.util.Log;
 import android.view.View;
 import android.widget.AdapterView;
 import android.widget.ArrayAdapter;
@@ -53,12 +56,23 @@ public class MainActivity extends AppCompatActivity {
     }
 
 
+    public void openAnotherActivity(){
+        Log.v("HI its called" , "Hi its called");
+        Intent intent = new Intent(this, test.class);
+        startActivity(intent);
+    }
+
+
     @Override
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
         setContentView(R.layout.activity_main);
         Spinner algorithms_spinner = findViewById(R.id.algorithms);
         Spinner operations_spinner = findViewById(R.id.operations);
+
+       this.openAnotherActivity();
+
+
 
 
         algorithms_spinner.setOnItemSelectedListener(new AdapterView.OnItemSelectedListener() {
@@ -140,8 +154,9 @@ public class MainActivity extends AppCompatActivity {
 
 
 
+
         encrypt_btn.setOnClickListener(new View.OnClickListener() {
-            @Override
+
             public void onClick(View view) {
 
                 String K = enc_et_k.getText().toString();
@@ -154,20 +169,27 @@ public class MainActivity extends AppCompatActivity {
                 if (algorithm_index == 0) {
                     // beetle
 
-                    if (operation_index == 0) { // encryption
-                        Bettle_256_Enc enc = new Bettle_256_Enc();
-                        rsp = enc.Encription(K, N, A, M);
-                        C = rsp.get(0);
-                        T = rsp.get(1);
-                        enc_et_chipher.setText(C);
-                        enc_et_tag.setText(T);
+                  openAnotherActivity();
 
-                    } else {  // decryption
-                        Bettle_256_Dec dec = new Bettle_256_Dec();
-                        rsp = dec.Decription(K, N, A, C,T);
-                        M = rsp.get(0);
-                        enc_et_m.setText(M);
-                    }
+
+
+
+
+
+//                    if (operation_index == 10) { // encryption
+//                        Bettle_256_Enc enc = new Bettle_256_Enc();
+//                        rsp = enc.Encription(K, N, A, M);
+//                        C = rsp.get(0);
+//                        T = rsp.get(1);
+//                        enc_et_chipher.setText(C);
+//                        enc_et_tag.setText(T);
+//
+//                    } else {  // decryption
+//                        Bettle_256_Dec dec = new Bettle_256_Dec();
+//                        rsp = dec.Decription(K, N, A, C,T);
+//                        M = rsp.get(0);
+//                        enc_et_m.setText(M);
+//                    }
 
                 } else {
                     // locus
